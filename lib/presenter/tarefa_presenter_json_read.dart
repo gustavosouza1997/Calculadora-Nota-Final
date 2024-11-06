@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:aula11_calc/dao/tarefa_dao.dart';
 import 'package:aula11_calc/model/tarefa_model.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart';
 
 class TarefaPresenter {
   final TarefaDao db;
@@ -9,45 +9,27 @@ class TarefaPresenter {
   TarefaPresenter(this.db);
 
   // Confere se as tarefas já estão salvas no banco, caso estejam carrega as informações do banco de dados
-  // Caso contrário, carrega as informações da API e salva no banco de dados
+  // Caso contrário, carrega as informações do arquivo JSON
   Future<List<Tarefa>> carregarTarefas() async {
-    // Carregar tarefas do banco de dados
     List<Tarefa> tarefas = await db.listarTarefas();
 
-    // Se não houver tarefas no banco de dados, carrega da API
-    if (tarefas.isEmpty) {
-      try {
-        // Faz a requisição para obter as tarefas da API
-        final response = await http.get(
-          Uri.parse('https://back-tarefas-bfhjb9chgee4g4at.canadacentral-01.azurewebsites.net/tarefas'),
-        );
+  if (tarefas.isEmpty) {
+    final jsonString = await rootBundle.loadString('assets/notas.json');
+    final List<dynamic> jsonData = json.decode(jsonString);
+    final tarefasJson = jsonData.map((item) => Tarefa.fromJson(item)).toList();
 
-        if (response.statusCode == 200) {
-          // Decodifica a resposta JSON da API
-          final List<dynamic> jsonData = json.decode(response.body);
-
-          // Converte o JSON em uma lista de objetos Tarefa
-          final tarefasJson = jsonData.map((item) => Tarefa.fromJson(item)).toList();
-
-          // Salva as tarefas no banco de dados, se ainda não estiverem lá
-          for (var tarefa in tarefasJson) {
-            final exists = await db.buscarTarefasPorNome(tarefa.titulo);
-            if (exists.isEmpty) {
-              await db.salvarTarefas(tarefa);
-            }
-          }
-
-          // Atualiza a lista de tarefas após a inserção
-          tarefas = await db.listarTarefas();
-        } else {
-          throw Exception('Falha ao carregar tarefas da API: ${response.statusCode}');
-        }
-      } catch (e) {
-        throw Exception('Erro ao carregar tarefas: $e');
+    // Verificar se cada tarefa já está no banco antes de inserir
+    for (var tarefa in tarefasJson) {
+      final exists = await db.buscarTarefasPorNome(tarefa.titulo);
+      if (exists.isEmpty) {
+        await db.salvarTarefas(tarefa);
       }
     }
 
-    return tarefas;
+    tarefas = await db.listarTarefas(); // Atualizar a lista após salvar
+  }
+
+  return tarefas;   
   }
 
   // Calcular a nota final

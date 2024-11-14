@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue, // Define o tema principal como azul
       ),
       home: const LoginPage()
-
     );
   }
 }

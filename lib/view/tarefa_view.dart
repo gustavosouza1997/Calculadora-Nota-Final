@@ -14,8 +14,8 @@ class TarefaView extends StatefulWidget {
 
 class _TarefasViewState extends State<TarefaView> {
   late Future<List<Tarefa>> _tarefas;
-  final TextEditingController _searchController = TextEditingController();
-  final Map<int, TextEditingController> _notaControllers = {};
+  final TextEditingController _searchController = TextEditingController(); // Controlador para o campo de busca
+  final Map<int, TextEditingController> _notaControllers = {}; // Mapa para controladores de notas
   double _notaFinal = 0.0;
 
   @override
@@ -32,6 +32,7 @@ class _TarefasViewState extends State<TarefaView> {
 
   @override
   void dispose() {
+    // Libere os controladores de notas para evitar vazamentos de memória.
     _searchController.dispose();
     for (var controller in _notaControllers.values) {
       controller.dispose();
@@ -39,23 +40,27 @@ class _TarefasViewState extends State<TarefaView> {
     super.dispose();
   }
 
+  // Função para buscar tarefas com base no texto digitado
   void _buscarTarefas(String query) {
     setState(() {
-      _tarefas = widget.presenter.buscarTarefas(query);
+      _tarefas = widget.presenter.buscarTarefas(query); // Atualiza a lista de tarefas com base na busca
     });
   }
 
+  // Função para limpar a busca e exibir todas as tarefas novamente
   void _limparBusca() {
-    _searchController.clear();
+    _searchController.clear(); // Limpa o campo de busca
     setState(() {
-      _tarefas = widget.presenter.carregarTarefas();
+      _tarefas = widget.presenter.carregarTarefas(); // Recarrega todas as tarefas
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    // Scaffold é a estrutura básica de layout em Flutter, que fornece o esqueleto de uma tela com suporte para barra de aplicativo, corpo, botão de ação flutuante, etc.
     return Scaffold(
       appBar: AppBar(
+        // AppBar cria uma barra no topo da tela com o título "Notas dos Trabalhos"
         title: const Text('Notas dos Trabalhos'),
         backgroundColor: Colors.blueAccent,
         actions: [
@@ -86,9 +91,13 @@ class _TarefasViewState extends State<TarefaView> {
             ),
           ),
           Expanded(
+            // FutureBuilder é um widget que constrói a interface com base no estado de um Future. Aqui, ele está esperando a lista de tarefas (_tarefas).
             child: FutureBuilder<List<Tarefa>>(
               future: _tarefas,
               builder: (context, snapshot) {
+                // O 'builder' define a lógica de construção da interface dependendo do estado do Future (snapshot).
+
+                // Caso o Future ainda esteja sendo processado (estado de espera), mostra um indicador de progresso circula
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
@@ -97,18 +106,21 @@ class _TarefasViewState extends State<TarefaView> {
                   return const Center(child: Text('Nenhuma tarefa encontrada'));
                 }
 
-                final tarefas = snapshot.data!;
+                // Quando o Future é completado com sucesso, snapshot.data contém a lista de tarefas.
+                final tarefas = snapshot.data!; // O uso de '!' indica que 'tarefas' não é nulo.
 
+                // ListView.builder é um widget que constrói uma lista de forma eficiente, apenas criando os itens visíveis na tela.
                 return ListView.builder(
-                  itemCount: tarefas.length,
+                  itemCount: tarefas.length, // Define o número de itens (tarefas) na lista.
                   itemBuilder: (context, index) {
-                    final tarefa = tarefas[index];
+                    final tarefa = tarefas[index]; // Acessa a tarefa na posição atual (index).
                     final controller = _notaControllers.putIfAbsent(
                       tarefa.id!,
                       () => TextEditingController(
                         text: tarefa.nota != null ? tarefa.nota.toString() : '',
                       ),
                     );
+
 
                     return Card(
                       margin: const EdgeInsets.symmetric(

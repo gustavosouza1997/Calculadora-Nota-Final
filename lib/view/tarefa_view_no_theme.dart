@@ -101,8 +101,7 @@ class _TarefasViewState extends State<TarefaView> {
                 }
 
                 // Quando o Future é completado com sucesso, snapshot.data contém a lista de tarefas.
-                final tarefas =
-                  snapshot.data!; // O uso de '!' indica que 'tarefas' não é nulo.
+                final tarefas = snapshot.data!; // O uso de '!' indica que 'tarefas' não é nulo.
 
                 // ListView.builder é um widget que constrói uma lista de forma eficiente, apenas criando os itens visíveis na tela.
                 return ListView.builder(

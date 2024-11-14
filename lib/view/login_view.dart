@@ -18,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   final AutenticacaoPresenter _autenticacaoPresenter = AutenticacaoPresenter();
   String? _errorMessage;
 
-  // Função de login
+  // Função de login com email e senha
   Future<void> _login() async {
     try {
       final user = await _autenticacaoPresenter.loginWithEmailAndPassword(
@@ -26,25 +26,35 @@ class _LoginPageState extends State<LoginPage> {
         _passwordController.text,
       );
       if (user != null) {
-        // Login bem-sucedido
-
-        // Obtém a instância única (singleton) de TarefaDao para acesso ao banco de dados
-        final tarefaDao = TarefaDao.instance;
-
-        // Cria uma instância de TarefaPresenter para gerenciar a lógica de negócios
-        final tarefaPresenter = TarefaPresenter(tarefaDao);
-
-        Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
-          context,
-          MaterialPageRoute(builder: (context) => TarefaView(presenter: tarefaPresenter,)),
-        );
+        _navigateToTarefaView();
       }
     } catch (e) {
       setState(() {
         _errorMessage = e.toString();
       });
     }
+  }
+
+  // Função de login com Google
+  Future<void> _loginWithGoogle() async {
+    try {
+      final user = await _autenticacaoPresenter.loginWithGoogle();
+      if (user != null) {
+        _navigateToTarefaView();
+      }
+    } catch (e) {
+      setState(() {
+        _errorMessage = e.toString();
+      });
+    }
+  }
+
+  // Navegar para a tela de tarefas
+  void _navigateToTarefaView() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => TarefaView(presenter: TarefaPresenter(TarefaDao.instance))),
+    );
   }
 
   @override
@@ -77,14 +87,21 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _login,
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
               child: const Text('Entrar'),
+            ),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.login),
+              label: const Text('Login com Google'),
+              onPressed: _loginWithGoogle,
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
             ),
             if (_errorMessage != null)
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
                   _errorMessage!,
-                  style: const TextStyle(color: Colors.red),
+                  style: const TextStyle(color: Colors.blue),
                 ),
               ),
           ],

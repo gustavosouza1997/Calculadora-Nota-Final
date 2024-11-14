@@ -12,7 +12,20 @@
           "package_name": "com.example.calculadoranotafinal"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "391628714780-raemrvb2ebbvvkdvv223oqmtlvml0d73.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.calculadoranotafinal",
+            "certificate_hash": "093a781bd4589ef3ab50953bf6e6a0fa4f65a9fc"
+          }
+        },
+        {
+          "client_id": "391628714780-tmk1i42uuisu5sm699d8uap00vt15tc1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBnn6SfJeuyCtPOMnTuFtRjZW1G5bW0yQ8"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391628714780-tmk1i42uuisu5sm699d8uap00vt15tc1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "391628714780-gtam5cfec6adkfar862037fbmkvjnpnc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.calculadoranotafinal"
+              }
+            }
+          ]
         }
       }
     }

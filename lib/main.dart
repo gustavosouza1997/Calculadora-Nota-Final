@@ -1,9 +1,14 @@
+import 'package:aula11_calc/firebase_options.dart';
 import 'package:aula11_calc/view/login_view.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   // Inicializa os bindings do Flutter para garantir que o framework esteja pronto
   WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
     // Inicializa o aplicativo
   runApp(const MyApp());

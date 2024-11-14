@@ -41,48 +41,48 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAKUP4lmanC6Z1OJBPqEvaxIFMQv2KfYDM',
-    appId: '1:375962179404:web:3e4cb4705d022f4722e1e9',
-    messagingSenderId: '375962179404',
-    projectId: 'calculadora-nota-final',
-    authDomain: 'calculadora-nota-final.firebaseapp.com',
-    storageBucket: 'calculadora-nota-final.firebasestorage.app',
-    measurementId: 'G-67EGBJNFDL',
+    apiKey: 'AIzaSyAA7RtoovzTvON-4avOLykDRDEPCa2TpIc',
+    appId: '1:391628714780:web:256d36188535facfd540d9',
+    messagingSenderId: '391628714780',
+    projectId: 'calculadoranotafinal',
+    authDomain: 'calculadoranotafinal.firebaseapp.com',
+    storageBucket: 'calculadoranotafinal.firebasestorage.app',
+    measurementId: 'G-7JKG497850',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAHDdw2QJtwR-W9M7a45tPCZ7jZb-D5wqo',
-    appId: '1:375962179404:android:cd9836ecfcf9d63c22e1e9',
-    messagingSenderId: '375962179404',
-    projectId: 'calculadora-nota-final',
-    storageBucket: 'calculadora-nota-final.firebasestorage.app',
+    apiKey: 'AIzaSyBnn6SfJeuyCtPOMnTuFtRjZW1G5bW0yQ8',
+    appId: '1:391628714780:android:6dbfaa6ff58f459bd540d9',
+    messagingSenderId: '391628714780',
+    projectId: 'calculadoranotafinal',
+    storageBucket: 'calculadoranotafinal.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAQeAPxGJFUOpxodvIiei6W1ifWaJ2Rluk',
-    appId: '1:375962179404:ios:5ad91097cfbe2a2722e1e9',
-    messagingSenderId: '375962179404',
-    projectId: 'calculadora-nota-final',
-    storageBucket: 'calculadora-nota-final.firebasestorage.app',
+    apiKey: 'AIzaSyAzV33vKGhyMUuYV81ENVPVwnjJQG1D3RM',
+    appId: '1:391628714780:ios:a4f7588b4d9fc73ad540d9',
+    messagingSenderId: '391628714780',
+    projectId: 'calculadoranotafinal',
+    storageBucket: 'calculadoranotafinal.firebasestorage.app',
     iosBundleId: 'com.example.calculadoranotafinal',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAQeAPxGJFUOpxodvIiei6W1ifWaJ2Rluk',
-    appId: '1:375962179404:ios:5ad91097cfbe2a2722e1e9',
-    messagingSenderId: '375962179404',
-    projectId: 'calculadora-nota-final',
-    storageBucket: 'calculadora-nota-final.firebasestorage.app',
+    apiKey: 'AIzaSyAzV33vKGhyMUuYV81ENVPVwnjJQG1D3RM',
+    appId: '1:391628714780:ios:a4f7588b4d9fc73ad540d9',
+    messagingSenderId: '391628714780',
+    projectId: 'calculadoranotafinal',
+    storageBucket: 'calculadoranotafinal.firebasestorage.app',
     iosBundleId: 'com.example.calculadoranotafinal',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAKUP4lmanC6Z1OJBPqEvaxIFMQv2KfYDM',
-    appId: '1:375962179404:web:7961cdca9b18f56d22e1e9',
-    messagingSenderId: '375962179404',
-    projectId: 'calculadora-nota-final',
-    authDomain: 'calculadora-nota-final.firebaseapp.com',
-    storageBucket: 'calculadora-nota-final.firebasestorage.app',
-    measurementId: 'G-87BGF4B3H7',
+    apiKey: 'AIzaSyAA7RtoovzTvON-4avOLykDRDEPCa2TpIc',
+    appId: '1:391628714780:web:d20637db8c36f2e5d540d9',
+    messagingSenderId: '391628714780',
+    projectId: 'calculadoranotafinal',
+    authDomain: 'calculadoranotafinal.firebaseapp.com',
+    storageBucket: 'calculadoranotafinal.firebasestorage.app',
+    measurementId: 'G-58PZGE6603',
   );
 }

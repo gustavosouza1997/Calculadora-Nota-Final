@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "375962179404",
-    "project_id": "calculadora-nota-final",
-    "storage_bucket": "calculadora-nota-final.firebasestorage.app"
+    "project_number": "391628714780",
+    "project_id": "calculadoranotafinal",
+    "storage_bucket": "calculadoranotafinal.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:375962179404:android:cd9836ecfcf9d63c22e1e9",
+        "mobilesdk_app_id": "1:391628714780:android:6dbfaa6ff58f459bd540d9",
         "android_client_info": {
-          "package_name": "com.example.calculadora_nota_final"
+          "package_name": "com.example.calculadoranotafinal"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAHDdw2QJtwR-W9M7a45tPCZ7jZb-D5wqo"
+          "current_key": "AIzaSyBnn6SfJeuyCtPOMnTuFtRjZW1G5bW0yQ8"
         }
       ],
       "services": {

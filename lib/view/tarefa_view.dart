@@ -15,7 +15,7 @@ class TarefaView extends StatefulWidget {
 class _TarefasViewState extends State<TarefaView> {
   late Future<List<Tarefa>> _tarefas;
   final TextEditingController _searchController = TextEditingController(); // Controlador para o campo de busca
-  final Map<int, TextEditingController> _notaControllers = {}; // Mapa para controladores de notas
+  final Map<String, TextEditingController> _notaControllers = {}; // Mapa para controladores de notas
   double _notaFinal = 0.0;
 
   @override
@@ -115,7 +115,7 @@ class _TarefasViewState extends State<TarefaView> {
                   itemBuilder: (context, index) {
                     final tarefa = tarefas[index]; // Acessa a tarefa na posição atual (index).
                     final controller = _notaControllers.putIfAbsent(
-                      tarefa.id!,
+                      tarefa.id,
                       () => TextEditingController(
                         text: tarefa.nota != null ? tarefa.nota.toString() : '',
                       ),
@@ -184,6 +184,7 @@ class _TarefasViewState extends State<TarefaView> {
                     final tarefas = await _tarefas;
                     await widget.presenter.salvarTarefas(tarefas);
                     
+                    // ignore: use_build_context_synchronously
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: const Text('Notas salvas com sucesso'),

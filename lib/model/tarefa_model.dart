@@ -1,5 +1,7 @@
+import 'package:uuid/uuid.dart';
+
 class Tarefa {
-  int? id;
+  String id; // Agora o id será do tipo String
   String tipo;
   String titulo;
   String periodo;
@@ -7,19 +9,20 @@ class Tarefa {
   double? nota;
   DateTime? timestamp;
 
-  Tarefa(
-      {this.id,
-      required this.tipo,
-      required this.titulo,
-      required this.periodo,
-      required this.peso,
-      this.nota,
-      this.timestamp});
+  Tarefa({
+    String? id, // Aqui você pode receber o ID como parâmetro
+    required this.tipo,
+    required this.titulo,
+    required this.periodo,
+    required this.peso,
+    this.nota,
+    this.timestamp,
+  }) : id = id ?? const Uuid().v4(); // Se o ID não for passado, gera um novo UUID
 
   // Converter JSON para o modelo
   factory Tarefa.fromJson(Map<String, dynamic> json) {
     return Tarefa(
-      id: json['id'],
+      id: json['id'] ?? const Uuid().v4(), // Se o JSON não contiver 'id', gera um UUID
       tipo: json['tipo'],
       titulo: json['titulo'],
       periodo: json['periodo'],
